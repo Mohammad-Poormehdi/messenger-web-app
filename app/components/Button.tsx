@@ -12,7 +12,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ fullWidth, children, secondary, danger, disabled }, ref) => {
+  ({ fullWidth, children, secondary, danger, disabled, ...props }, ref) => {
     return (
       <button
         disabled={disabled}
@@ -27,6 +27,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             !danger &&
             "bg-sky-500 hover:bg-sky-600 focus-visible:outline-sky-600"
         )}
+        {...props}
       >
         {children}
       </button>

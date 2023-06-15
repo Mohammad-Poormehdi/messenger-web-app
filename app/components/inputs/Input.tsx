@@ -10,7 +10,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ id, label, errors, disabled }, ref) => {
+  ({ id, label, errors, disabled, ...props }, ref) => {
     return (
       <div className="">
         <label
@@ -30,6 +30,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             disabled={disabled}
             ref={ref}
             autoComplete={id}
+            {...props}
           />
         </div>
       </div>
