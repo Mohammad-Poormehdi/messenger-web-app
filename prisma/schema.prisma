@@ -52,21 +52,21 @@ model Conversation {
   name          String?
   isGroup       Boolean?
   messagesIds   String[]  @db.ObjectId
-  messages      Message[] @relation(fields: [messagesIds], references: [id])
+  messages      Message[] 
 
   userIds String[] @db.ObjectId
   users   User[]   @relation(fields: [userIds], references: [id])
 }
 
 model Message {
-  id              String         @id @default(auto()) @map("_id") @db.ObjectId
-  body            String?
-  image           String?
-  createdAt       DateTime?      @default(now())
-  seenIds         String[]       @db.ObjectId
-  seen            User[]         @relation("Seen", fields: [seenIds], references: [id])
-  converstaionIds String[]       @db.ObjectId
-  conversations   Conversation[] @relation(fields: [converstaionIds], references: [id])
-  senderId        String         @db.ObjectId
-  sender          User           @relation(fields: [senderId], references: [id], onDelete: Cascade)
+  id             String       @id @default(auto()) @map("_id") @db.ObjectId
+  body           String?
+  image          String?
+  createdAt      DateTime?    @default(now())
+  seenIds        String[]     @db.ObjectId
+  seen           User[]       @relation("Seen", fields: [seenIds], references: [id])
+  converstaionId String       @db.ObjectId
+  conversation   Conversation @relation(fields: [converstaionId], references: [id], onDelete: Cascade)
+  senderId       String       @db.ObjectId
+  sender         User         @relation(fields: [senderId], references: [id], onDelete: Cascade)
 }

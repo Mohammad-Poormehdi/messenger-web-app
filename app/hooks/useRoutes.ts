@@ -3,19 +3,19 @@ import { usePathname } from "next/navigation";
 import { HiChat } from "react-icons/hi";
 import { HiArrowLeftOnRectangle, HiUsers } from "react-icons/hi2";
 import { signOut } from "next-auth/react";
-import useConverstaion from "./useConverstaion";
+import useConversations from "./useConversations";
 
 const useRoutes = () => {
   const pathname = usePathname();
-  const { converstaionId } = useConverstaion();
+  const { conversationsId } = useConversations();
 
   const routes = useMemo(
     () => [
       {
         label: "Chat",
-        href: "/converstaions",
+        href: "/conversations",
         icon: HiChat,
-        active: pathname === "/converstaion" || !!converstaionId,
+        active: pathname === "/conversations" || !!conversationsId,
       },
       {
         label: "Users",
@@ -30,7 +30,7 @@ const useRoutes = () => {
         icon: HiArrowLeftOnRectangle,
       },
     ],
-    [pathname, converstaionId]
+    [pathname, conversationsId]
   );
   return routes;
 };
